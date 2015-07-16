@@ -41,7 +41,7 @@ class Coin_Change(object):
     		print m
     		
     	#coin denomination using dynammic programming
-	def coinDen(coins, amount):
+	def coinDen(self, coins, amount):
 		table = []    #table to keep tarck of number of coins
     		coinUsed = []  #table to keep tarck of coins used
     
