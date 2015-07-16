@@ -39,3 +39,20 @@ class change(object):
 
     		print C
     		print m
+    		
+    	#coin denomination using dynammic programming
+	def coinDen(coins, amount):
+		table = []    #table to keep tarck of number of coins
+    		coinUsed = []  #table to keep tarck of coins used
+    
+    		for i in range(0, amount + 1):
+        		table.append(i)
+        		coinUsed.append(i)
+
+    		for i in coins:
+        		for j in range(i, amount + 1):
+            			if table[j] > table[j - i] + 1:
+                			table[j] = table[j - i] + 1
+                			coinUsed[j] = i
+                
+    		return table[amount], coinUsed
