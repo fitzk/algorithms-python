@@ -1,14 +1,16 @@
 ######################################################################
-# Project Group:  2                                                  #
+# Project Group:  1                                                  #
 # Group Members:  Eric Cruz, Baljot Singh, Kayla Fitzsimmons         #
 # Course:         CS325-400                                          #
-# Assignment:     Project 1                                          #
+# Assignment:     Project 2                                          #
 # File:           change.py                                          #
 # Description:    Object that contains three algorithms that solve   #
 #                 the coin change problem                            #
 ######################################################################
 class change(object):
-	def changegreedy(V, A):
+	
+	#Greedy algorithm
+	def changegreedy(self, V, A):
 		temp1 = []  # temp V in reverse (decreasing order)
     		temp2 = []  # temp counter for each coin used (decreasing order)
     		C = []  # number of each coin used (increasing order)
