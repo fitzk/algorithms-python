@@ -34,7 +34,7 @@ class Coin_Change(object):
     
     		for i in range(0, amount + 1):
         		table.append(i)
-        		coinUsed.append(i)
+        		coinUsed.append(1)
 
     		for i in coins:
         		for j in range(i, amount + 1):
