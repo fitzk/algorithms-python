@@ -3,11 +3,11 @@
 # Group Members:  Eric Cruz, Baljot Singh, Kayla Fitzsimmons         #
 # Course:         CS325-400                                          #
 # Assignment:     Project 2                                          #
-# File:           change.py                                          #
+# File:           Coin_Change.py                                          #
 # Description:    Object that contains three algorithms that solve   #
 #                 the coin change problem                            #
 ######################################################################
-class change(object):
+class Coin_Change(object):
 	
 	#Greedy algorithm
 	def changegreedy(self, V, A):
