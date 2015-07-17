@@ -4,5 +4,6 @@ from Coin_Change import Coin_Change
 
 coin = Coin_Change()
 
-coins = [1,3,5,10]
-coin.changeslow(coins, 4)
+coins = [1, 5, 10, 25, 50]
+coin.changeslow(coins,0,27)
+

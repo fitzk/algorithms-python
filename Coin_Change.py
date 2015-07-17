@@ -7,72 +7,78 @@
 # Description:    Object that contains three algorithms that solve   #
 #                 the coin change problem                            #
 ######################################################################
+
 class Coin_Change(object):
+    # brute force divide and conquer algorithm
+    def changeslow(self, coins,div, amount):
+        div = div + 1
+        if amount == 1:
+            return 1
+        i = 0
+        while i < len(coins):
+            if coins[i] == amount:
+                return coins[i]
+            i = i + 1
 
-	#brute force divide and conquer algorithm
-	def changeslow(self,coins, amount):
-		#if there is a K-cent coin then that one coin is the minimum
+        if div <= amount/2:
+            min_one = self.changeslow(coins, div, div)
+            print "min_one: ", min_one
+            min_rest = self.changeslow(coins, div,(amount-div))
+            print "min_rest: ", min_rest
 
-
-		# j=0
-		# while j < len(coins):
-		# 	if coins[j] == amount:
-		# 		print coins[j]
-		# 		return coins[j]
-		# 	j=j+1
-		i=1
-
-		while i <= amount:
-			print i
-			print amount
-		 	coins_a = self.changeslow(coins, i)
-			coins_b = self.changeslow(coins, amount - i)
-			print "Coints at a: "
-			print coins_a
-			i = i + 1
-		if amount == 1:
-			return 1
-		#
-		# 	new_coins = coins_a + coins_b
-		# 	print new_coins
-		# 	i = i +1
-		# return "fin"
+            # I know this isn't what we want to return
+            # but I was just trying to return something
+            # for testing
+            return min_one, min_rest
 
 
 
 
+#         This implementation is called changeslow.
+# To make change for A cents:
+# If there is a K-cent coin, then that one coin is the minimum
+# Otherwise, for each value i < K,
+# Find the minimum number of coins needed to make i cents
+# Find the minimum number of coins needed to make K - i cents
+# Choose the i that minimizes this sum
+# This algorithm can be viewed as divide-and-conquer, or as brute force. This solution is very recursive and runs in exponential time.
 
-	#Greedy algorithm
-	def changegreedy(self, V, A):
-    		coinUsed = []  # type of coins used
-    		m = 0  # minimum number of coins used
 
-    		# reverses V to be in decreasing order
-    		length = len(V) - 1
-    		while length >= 0:
-        		if A > V[length] or A == V[length]:
-        			A = A - V[length]
-        			m = m + 1
-            			coinUsed.append(V[length])
 
-        		elif A < V[length]:
-            			length = length - 1
 
-        	return m, coinUsed
 
-    	#coin denomination using dynammic programming
-	def coinDen(self, coins, amount):
-		table = []    #table to keep tarck of number of coins
-    		coinUsed = []  #table to keep tarck of coins used
 
-    		for i in range(0, amount + 1):
-        		table.append(i)
-        		coinUsed.append(1)
+    # Greedy algorithm
+    def changegreedy(self, V, A):
+        coinUsed = []  # type of coins used
+        m = 0  # minimum number of coins used
 
-    		for i in coins:
-        		for j in range(i, amount + 1):
-            			if table[j] > table[j - i] + 1:
-                			table[j] = table[j - i] + 1
-                			coinUsed[j] = i
+        # reverses V to be in decreasing order
+        length = len(V) - 1
+        while length >= 0:
+            if A > V[length] or A == V[length]:
+                A = A - V[length]
+                m = m + 1
+                coinUsed.append(V[length])
 
-    		return table[amount], coinUsed
+            elif A < V[length]:
+                length = length - 1
+
+        return m, coinUsed
+
+    # coin denomination using dynammic programming
+    def coinDen(self, coins, amount):
+        table = []  # table to keep tarck of number of coins
+        coinUsed = []  # table to keep tarck of coins used
+
+        for i in range(0, amount + 1):
+            table.append(i)
+            coinUsed.append(1)
+
+        for i in coins:
+            for j in range(i, amount + 1):
+                if table[j] > table[j - i] + 1:
+                    table[j] = table[j - i] + 1
+                    coinUsed[j] = i
+
+        return table[amount], coinUsed
