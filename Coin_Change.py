@@ -42,28 +42,25 @@ class Coin_Change(object):
 # Find the minimum number of coins needed to make K - i cents
 # Choose the i that minimizes this sum
 # This algorithm can be viewed as divide-and-conquer, or as brute force. This solution is very recursive and runs in exponential time.
-
-
-
-
-
-
-    # Greedy algorithm
-    def changegreedy(self, V, A):
-        coinUsed = []  # type of coins used
+    
+    #Greedy algorithm
+    def changegreedy(V, A):
+        coinUsed = []  # type of coins used 
         m = 0  # minimum number of coins used
 
         # reverses V to be in decreasing order
         length = len(V) - 1
-        while length >= 0:
-            if A > V[length] or A == V[length]:
-                A = A - V[length]
-                m = m + 1
+        while length >= 0 and A != 0:
+        
+            m = m + A/V[length]
+            
+            for i in range(0, A/V[length]):
                 coinUsed.append(V[length])
-
-            elif A < V[length]:
-                length = length - 1
-
+            
+            A = A % V[length]
+            
+            length = length - 1
+    
         return m, coinUsed
 
     # coin denomination using dynammic programming
