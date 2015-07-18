@@ -31,6 +31,9 @@ while line:
     amount = int(f.readline())
     line = f.readline()
     
+    s = 'Coins Available:' + str(array) + '\n' + 'Change needed:' + str(amount) + '\n' + '\n'
+    f2.write(s)
+    
     # dynamic programming algorithm
     start = time.clock()
     coinUsed, coins = coin_change.coinDen(array, amount) # function to be tested
@@ -42,7 +45,7 @@ while line:
         ln = ln - coins[ln]
 
     #Write to file results of dynamic programming algorithm
-    s = 'dynamic programming algorithm' + '\n' + str(array)+'\n' + str(coinArr) + '\n' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
+    s = 'dynamic programming algorithm' + '\n' + 'Coins used:'+ str(coinArr) + '\n' + 'Number of coins:'+ str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
     f2.write(s)
 
     #empty arr
@@ -58,7 +61,7 @@ while line:
     end = time.clock()
 
     #Write to file results of greedy algorithm
-    s = 'greedy algorithm' + '\n' + str(array)+'\n' + str(coins) + '\n' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
+    s = 'greedy algorithm' + '\n' + 'Coins used:' + str(coins) + '\n' + 'Number of coins:'+ str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
     f2.write(s)
     
     #empty arr
@@ -78,7 +81,7 @@ while line:
         ln = ln - coinsNeeded[ln]
         
     #Write to file results of brute-force algorithm
-    s = 'brute-force algorithm' + '\n' + str(array)+'\n' + str(coinArr) + '\n' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
+    s = 'brute-force algorithm' + '\n' + 'Coins used:' + str(coinArr) + '\n' + 'Number of coins:' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
     f2.write(s)
     
     del coinArr[:]
