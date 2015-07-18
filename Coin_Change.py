@@ -31,7 +31,7 @@ class Coin_Change(object):
         else:
             for c in range(0, len(coins)): 
                 if coins[c] <= change:
-                    num_coins = 1 + self.changeslow(coins,change-coins[c], arr)[0]
+                    num_coins = 1 + self.changeslow(coins,change-coins[c],  coinUsed)[0]
                 
                     if num_coins < min_coins:
                         min_coins = num_coins
