@@ -34,6 +34,7 @@ class Coin_Change(object):
                     num_coins = 1 + self.changeslow(coins,change-coins[c], coinUsed)[0]
                 
                     if num_coins < min_coins:
+                        coinUsed[change] = coins[c]
                         min_coins = num_coins
     
         return min_coins, coinUsed
