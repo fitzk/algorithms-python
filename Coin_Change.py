@@ -25,7 +25,7 @@ class Coin_Change(object):
         #base case if chnage is equal to one of the coin
         if change in coins:
             coinUsed[change] = change
-            return 1, arr
+            return 1, coinUsed
     
         #make recursive call to find number of coins
         else:
