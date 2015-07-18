@@ -19,7 +19,7 @@ class Coin_Change(object):
     # Choose the i that minimizes this sum
     # This algorithm can be viewed as divide-and-conquer, or as brute force. This solution is very recursive and runs in exponential time.
     
-    def changeslow(coins,change, coinUsed):
+    def changeslow(self, coins,change, coinUsed):
         min_coins = change
     
         #base case if chnage is equal to one of the coin
@@ -39,7 +39,7 @@ class Coin_Change(object):
         return min_coins, coinUsed
     
     #Greedy algorithm
-    def changegreedy(V, A):
+    def changegreedy(self, V, A):
         coinUsed = []  # type of coins used 
         m = 0  # minimum number of coins used
 
