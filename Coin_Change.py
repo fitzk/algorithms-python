@@ -10,38 +10,33 @@
 
 class Coin_Change(object):
     # brute force divide and conquer algorithm
-    def changeslow(self, coins,div, amount):
-        div = div + 1
-        if amount == 1:
-            return 1
-        i = 0
-        while i < len(coins):
-            if coins[i] == amount:
-                return coins[i]
-            i = i + 1
-
-        if div <= amount/2:
-            min_one = self.changeslow(coins, div, div)
-            print "min_one: ", min_one
-            min_rest = self.changeslow(coins, div,(amount-div))
-            print "min_rest: ", min_rest
-
-            # I know this isn't what we want to return
-            # but I was just trying to return something
-            # for testing
-            return min_one, min_rest
-
-
-
-
-#         This implementation is called changeslow.
-# To make change for A cents:
-# If there is a K-cent coin, then that one coin is the minimum
-# Otherwise, for each value i < K,
-# Find the minimum number of coins needed to make i cents
-# Find the minimum number of coins needed to make K - i cents
-# Choose the i that minimizes this sum
-# This algorithm can be viewed as divide-and-conquer, or as brute force. This solution is very recursive and runs in exponential time.
+    # This implementation is called changeslow.
+    # To make change for A cents:
+    # If there is a K-cent coin, then that one coin is the minimum
+    # Otherwise, for each value i < K,
+    # Find the minimum number of coins needed to make i cents
+    # Find the minimum number of coins needed to make K - i cents
+    # Choose the i that minimizes this sum
+    # This algorithm can be viewed as divide-and-conquer, or as brute force. This solution is very recursive and runs in exponential time.
+    
+    def changeslow(coins,change, coinUsed):
+        min_coins = change
+    
+        #base case if chnage is equal to one of the coin
+        if change in coins:
+            coinUsed[change] = change
+            return 1, arr
+    
+        #make recursive call to find number of coins
+        else:
+            for c in range(0, len(coins)): 
+                if coins[c] <= change:
+                    num_coins = 1 + changeslow(coins,change-coins[c], arr)[0]
+                
+                    if num_coins < min_coins:
+                        min_coins = num_coins
+    
+        return min_coins, coinUsed
     
     #Greedy algorithm
     def changegreedy(V, A):
