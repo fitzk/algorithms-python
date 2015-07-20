@@ -30,15 +30,15 @@ while line:
     array =  map(int, re.findall(r"[-+]?\d*\-\d+|\d+", line))
     amount = int(f.readline())
     line = f.readline()
-    
+
     s = 'Coins Available:' + str(array) + '\n' + 'Change needed:' + str(amount) + '\n' + '\n'
     f2.write(s)
-    
+
     # dynamic programming algorithm
     start = time.clock()
     coinUsed, coins = coin_change.coinDen(array, amount) # function to be tested
     end = time.clock()
-    
+
     ln = amount
     while ln > 0:
         coinArr.append(coins[ln])
@@ -51,10 +51,10 @@ while line:
     #empty arr
     del coins[:]
     coins[:] = []
-    
+
     del coinArr[:]
     coinArr[:] = []
-    
+
     # greedy algorithm
     start = time.clock()
     coinUsed, coins = coin_change.changegreedy(array, amount) # function to be tested
@@ -63,34 +63,34 @@ while line:
     #Write to file results of greedy algorithm
     s = 'greedy algorithm' + '\n' + 'Coins used:' + str(coins) + '\n' + 'Number of coins:'+ str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
     f2.write(s)
-    
+
     #empty arr
     del coins[:]
     coins[:] = []
-    
-    coinsNeeded = [1]*(amount + 1)
-    
+
+    # coinsNeeded = [1]*(amount + 1)
+
     # brute-force algorithm
-    start = time.clock()
-    coinUsed, coinsNeeded = coin_change.changeslow(array, amount, coinsNeeded) # function to be tested
-    end = time.clock()
-    
-    ln = amount
-    while ln > 0:
-        coinArr.append(coinsNeeded[ln])
-        ln = ln - coinsNeeded[ln]
-        
+    # start = time.clock()
+    # coinUsed, coinsNeeded = coin_change.changeslow(array, amount, coinsNeeded) # function to be tested
+    # end = time.clock()
+
+    # ln = amount
+    # while ln > 0:
+        # coinArr.append(coinsNeeded[ln])
+        # ln = ln - coinsNeeded[ln]
+
     #Write to file results of brute-force algorithm
-    s = 'brute-force algorithm' + '\n' + 'Coins used:' + str(coinArr) + '\n' + 'Number of coins:' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
-    f2.write(s)
-    
-    del coinArr[:]
-    coinArr[:] = []
-    
+    # s = 'brute-force algorithm' + '\n' + 'Coins used:' + str(coinArr) + '\n' + 'Number of coins:' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
+    # f2.write(s)
+
+    # del coinArr[:]
+    # coinArr[:] = []
+
     #empty arr
     del coinsNeeded[:]
     coinsNeeded[:] = []
-    
+
     del array[:]
     array[:] = []
 
