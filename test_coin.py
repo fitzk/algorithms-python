@@ -19,9 +19,9 @@ coinArr = []
 coin_change = Coin_Change()
 #creates a file object for input and output
 try:
-    f = open('coins.txt','r')
+    f = open(sys.argv[1],'r')
 except IOError:
-    print 'Error in opening file coins.txt'
+    print 'Error in opening input file'
     sys.exit(-1)
 
 f2 = open('change.txt','w')
