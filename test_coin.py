@@ -19,7 +19,7 @@ coin_change = Coin_Change()
 #creates a file object for input and output
 
 fileName = 'coins.txt'
-if len(sys.argv) > 5:
+if len(sys.argv) > 1:
     fileName = sys.argv[1]
 outFile = fileName[:-4] + 'change.txt'
 
