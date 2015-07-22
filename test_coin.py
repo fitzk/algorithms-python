@@ -8,7 +8,6 @@
 ######################################################################
 from Coin_Change import Coin_Change
 
-import time
 import sys
 import re
 
@@ -18,79 +17,62 @@ coins = []
 coinArr = []
 coin_change = Coin_Change()
 #creates a file object for input and output
+
+fileName = 'coins.txt'
+if len(sys.argv) > 5:
+    fileName = sys.argv[1]
+outFile = fileName[:-4] + 'change.txt'
+
 try:
-    f = open(sys.argv[1],'r')
+    f = open(fileName,'r')
 except IOError:
-    print 'Error in opening input file'
+    print 'Error in opening file coins.txt'
     sys.exit(-1)
 
-f2 = open('change.txt','w')
+f2 = open(outFile,'w')
 line = f.readline()
 while line:
     array =  map(int, re.findall(r"[-+]?\d*\-\d+|\d+", line))
     amount = int(f.readline())
     line = f.readline()
-
-    s = 'Coins Available:' + str(array) + '\n' + 'Change needed:' + str(amount) + '\n' + '\n'
-    f2.write(s)
-
+    
     # dynamic programming algorithm
-    start = time.clock()
     coinUsed, coins = coin_change.coinDen(array, amount) # function to be tested
-    end = time.clock()
-
-    ln = amount
-    while ln > 0:
-        coinArr.append(coins[ln])
-        ln = ln - coins[ln]
-
+    print coins
     #Write to file results of dynamic programming algorithm
-    s = 'dynamic programming algorithm' + '\n' + 'Coins used:'+ str(coinArr) + '\n' + 'Number of coins:'+ str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
+    s = str(coins) + '\n' + str(coinUsed) + '\n' 
     f2.write(s)
 
     #empty arr
     del coins[:]
     coins[:] = []
-
-    del coinArr[:]
-    coinArr[:] = []
-
+    
     # greedy algorithm
-    start = time.clock()
     coinUsed, coins = coin_change.changegreedy(array, amount) # function to be tested
-    end = time.clock()
-
+    print coins
+    
     #Write to file results of greedy algorithm
-    s = 'greedy algorithm' + '\n' + 'Coins used:' + str(coins) + '\n' + 'Number of coins:'+ str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
+    s = str(coins) + '\n' + str(coinUsed) + '\n'
     f2.write(s)
-
+    
     #empty arr
     del coins[:]
     coins[:] = []
-
-    # coinsNeeded = [1]*(amount + 1)
-
+  
+    coinsNeeded = [0]*(len(array))
+    
     # brute-force algorithm
-    # start = time.clock()
-    # coinUsed, coinsNeeded = coin_change.changeslow(array, amount, coinsNeeded) # function to be tested
-    # end = time.clock()
-
-    # ln = amount
-    # while ln > 0:
-        # coinArr.append(coinsNeeded[ln])
-        # ln = ln - coinsNeeded[ln]
-
+    coinUsed, coinNeeded = coin_change.changeslow(array, amount, coinsNeeded) # function to be tested
+    
     #Write to file results of brute-force algorithm
-    # s = 'brute-force algorithm' + '\n' + 'Coins used:' + str(coinArr) + '\n' + 'Number of coins:' + str(coinUsed) + '\n' + 'Time Taken: ' + str(end - start) + '\n' + '\n'
-    # f2.write(s)
-
-    # del coinArr[:]
-    # coinArr[:] = []
-
+    s = str(coinNeeded) + '\n' + str(coinUsed) + '\n' 
+    f2.write(s)
+    print coinsNeeded
+    
     #empty arr
     del coinsNeeded[:]
     coinsNeeded[:] = []
-
+    
     del array[:]
     array[:] = []
 
